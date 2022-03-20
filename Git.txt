@@ -1,0 +1,115 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+import java.util.List;
+import java.util.Set;
+
+// 1. Navigate to http://qa-duotify.us-east-2.elasticbeanstalk.com/register.php
+// 2. Verify the the title is "Welcome to Duotify!"
+// 3.Click on Signup here
+// 4.Fill out the form with the required info
+//5. Click on Sign up
+// 6.Once logged in to the application, verify that the URL is: http://qa-duotify.us-east-2.elasticbeanstalk.com/browse.php?
+// 7. Click on the username on the left navigation bar and then click logout.
+//8. Verify that you are logged out by verifying the URL is: http://qa-duotify.us-east-2.elasticbeanstalk.com/register.php
+//9. Login using the same username and password when you signed up
+//10.Verify successful login by verifying that the home page contains the text "You Might Also Like".
+
+
+class Task_Automation1 {
+    public static void main(String[] args) throws InterruptedException{
+
+
+        // Set Properties of browser drive with my Selenium
+        System.setProperty("webdriver.chrome.driver", "/Users/zukhraabdukolikova/Desktop/Browser Drivers/chromedriver");
+
+        // Open Chrome Driver
+        WebDriver script= new ChromeDriver();
+
+        script.manage().window().maximize();
+
+
+        // 1. Navigate to http (URL)
+        script.get("http://qa-duotify.us-east-2.elasticbeanstalk.com/register.php ");
+
+
+        // 2. Verify the title is correct
+        String actualTitle= script.getTitle();
+        String expectedTitle="Welcome to Duotify!";
+        if(actualTitle.equals(expectedTitle)){
+            System.out.println("Test passed: The Title is- "+ "\""+ actualTitle+"\"");
+        }else{
+            System.out.println("Test failed:"+ actualTitle);
+        }
+
+                        // 3.Check "Username" functionality
+
+
+        WebElement username= script.findElement(By.id("loginUsername"));
+        username.sendKeys("Zukhrahon");
+
+//            WebElement username= script.findElement(By.xpath("//input[@id="loginUsername"]")).sendKeys("Zukhrahon");
+//        Thread.sleep(3000);
+
+                        // 4. Check "Password" functionality
+        script.findElement(By.id("loginPassword")).sendKeys("Discover");
+//       WebElement username= script.findElement(By.xpath("//input[@id="loginPassword"]")).sendKeys("Discover");
+
+        Thread.sleep(3000);
+
+                       // 5 Check "Login In" button
+        script.findElement(By.name("loginButton")).click();
+
+
+                     //  Check " Don't have an account yet? Signup here."
+           script.findElement(By.id("hideLogin")).click();
+
+
+                       // Check "Logout" button functionality
+//        WebElement Logout= script.findElement(By.id("rafael")).sendKeys("test@gmail.com");
+//
+
+
+
+
+
+                           // 6. Verify homepage has the title "You Might Also Like".
+
+        String textprint=script.findElement(By.xpath("//h1[@class='pageHeadingBig']")).getText();
+                System.out.println("Test is :"+textprint);
+
+
+
+
+
+          // Option 2
+
+//        if (script.getPageSource().contains("You Might Also Like")){
+//            System.out.println("Text is present");
+//        }else{
+//            System.out.println("Text is not present");
+//        }
+
+
+
+
+           // Option 3
+//        try {
+//            script.findElement(By.className("pageHeadingBig"));
+//        }catch (Exception e){
+//            System.out.println("Text is not present");
+//        }
+
+
+
+
+        script.quit();
+
+}
+
+
+
+}
