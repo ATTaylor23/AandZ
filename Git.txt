@@ -23,20 +23,20 @@ class Task_Automation1 {
     public static void main(String[] args) throws InterruptedException{
 
 
-        // Set Properties of browser drive with my Selenium
+                             // Set Properties of browser drive with my Selenium
         System.setProperty("webdriver.chrome.driver", "/Users/zukhraabdukolikova/Desktop/Browser Drivers/chromedriver");
 
-        // Open Chrome Driver
+                            // Open Chrome Driver
         WebDriver script= new ChromeDriver();
 
         script.manage().window().maximize();
 
 
-        // 1. Navigate to http (URL)
+                           // 1. Navigate to http (URL)
         script.get("http://qa-duotify.us-east-2.elasticbeanstalk.com/register.php ");
 
 
-        // 2. Verify the title is correct
+                          // 2. Verify the title is correct
         String actualTitle= script.getTitle();
         String expectedTitle="Welcome to Duotify!";
         if(actualTitle.equals(expectedTitle)){
@@ -51,26 +51,58 @@ class Task_Automation1 {
         WebElement username= script.findElement(By.id("loginUsername"));
         username.sendKeys("Zukhrahon");
 
-//            WebElement username= script.findElement(By.xpath("//input[@id="loginUsername"]")).sendKeys("Zukhrahon");
-//        Thread.sleep(3000);
+//      WebElement username= script.findElement(By.xpath("//input[@id="loginUsername"]")).sendKeys("Zukhrahon");
+
 
                         // 4. Check "Password" functionality
         script.findElement(By.id("loginPassword")).sendKeys("Discover");
+        
 //       WebElement username= script.findElement(By.xpath("//input[@id="loginPassword"]")).sendKeys("Discover");
 
-        Thread.sleep(3000);
+        Thread.sleep(5000);
+        
+        
 
                        // 5 Check "Login In" button
         script.findElement(By.name("loginButton")).click();
+        
+        
+
+                    //  Check " Don't have an account yet? Signup here."  Option 1
+                         // enter a valid username
+//        script.findElement(By.name("username")).sendKeys("Zukhrahon");
+
+                        // enter a valid email address
+//        script.findElement(By.name("email")).sendKeys("test@gmail.com");
+
+                       // enter a valid password
+//        script.findElement(By.name("password")).sendKeys("Discover");
+
+                          // re-enter the password
+//        script.findElement(By.name("passwordConf")).sendKeys("Discover");
+
+                            // submit the form
+//        script.findElement(By.name("submit")).submit();
 
 
-                     //  Check " Don't have an account yet? Signup here."
-           script.findElement(By.id("hideLogin")).click();
+  
+   
 
-
-                       // Check "Logout" button functionality
-//        WebElement Logout= script.findElement(By.id("rafael")).sendKeys("test@gmail.com");
+       
+                //  Check " Don't have an account yet? Signup here."  Option 2
+//        script.findElement(By.xpath("//input[@id='username']")).sendKeys("Zukhrahon");
+//         script.findElement(By.xpath("//input[@id='firstName']")).sendKeys("Zukhra");
+//         script.findElement(By.xpath("//input[@id='lastName']")).sendKeys("Yakubova");
+//        script.findElement(By.xpath("//input[@id='email']")).sendKeys("test@gmail.com");
+//        script.findElement(By.xpath("//input[@id='email2']")).sendKeys("test@gmail.com");
+//        script.findElement(By.xpath("//input[@id='password']")).sendKeys("Discover");
+//        script.findElement(By.xpath("//input[@id='password2']")).sendKeys("Discover");
 //
+//        script.findElement(By.xpath("//button[@type='submit']")).click();// xpath for submit button
+
+
+
+
 
 
 
@@ -79,9 +111,7 @@ class Task_Automation1 {
                            // 6. Verify homepage has the title "You Might Also Like".
 
         String textprint=script.findElement(By.xpath("//h1[@class='pageHeadingBig']")).getText();
-                System.out.println("Test is :"+textprint);
-
-
+                System.out.println("Text is :"+textprint);
 
 
 
@@ -108,8 +138,8 @@ class Task_Automation1 {
 
         script.quit();
 
-}
+}}
 
 
 
-}
+
